@@ -120,8 +120,8 @@ def do_train(cfg, model,
                     summary_writer.add_scalar('losses/{}'.format(loss_name), loss_item, global_step=global_step)
                 summary_writer.add_scalar('lr', optimizer.param_groups[0]['lr'], global_step=global_step)
 
-        if iteration % args.save_step == 0:
-            checkpointer.save("model_{:06d}".format(iteration), **arguments)
+        # if iteration % args.save_step == 0:
+        #     checkpointer.save("model_{:06d}".format(iteration), **arguments)
 
         if args.eval_step > 0 and iteration % args.eval_step == 0 and not iteration == max_iter:
             eval_results = do_evaluation(cfg, model, distributed=args.distributed, iteration=iteration)
@@ -130,7 +130,7 @@ def do_train(cfg, model,
                     write_metric(eval_result['metrics'], 'metrics/' + dataset, summary_writer, iteration)
             model.train()  # *IMPORTANT*: change to train mode after eval.
 
-    checkpointer.save("model_final", **arguments)
+    checkpointer.save(f'models/{args.strategy}-{datetime.datetime.now().strftime("%Y%m%d%H%M%S")}-model_final', **arguments)
     # compute training time
     total_training_time = int(time.time() - start_training_time)
     total_time_str = str(datetime.timedelta(seconds=total_training_time))

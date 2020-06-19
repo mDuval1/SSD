@@ -1,6 +1,7 @@
 import logging
 import os
 import sys
+from datetime import datetime
 
 
 def setup_logger(name, distributed_rank, save_dir=None):
@@ -15,7 +16,7 @@ def setup_logger(name, distributed_rank, save_dir=None):
     stream_handler.setFormatter(formatter)
     logger.addHandler(stream_handler)
     if save_dir:
-        fh = logging.FileHandler(os.path.join(save_dir, 'log.txt'))
+        fh = logging.FileHandler(os.path.join(save_dir, f'log-{datetime.now().strftime("%Y%m%d%H%M%S")}.txt'))
         fh.setLevel(logging.DEBUG)
         fh.setFormatter(formatter)
         logger.addHandler(fh)

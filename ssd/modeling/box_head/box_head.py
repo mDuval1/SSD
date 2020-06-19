@@ -47,3 +47,15 @@ class SSDBoxHead(nn.Module):
         detections = (scores, boxes)
         detections = self.post_processor(detections)
         return detections, {}
+
+    def _forward_active(self, cls_logits, bbox_pred):
+        if self.priors is None:
+            self.priors = PriorBox(self.cfg)().to(bbox_pred.device)
+        scores = F.softmax(cls_logits, dim=2)
+        boxes = box_utils.convert_locations_to_boxes(
+            bbox_pred, self.priors, self.cfg.MODEL.CENTER_VARIANCE, self.cfg.MODEL.SIZE_VARIANCE
+        )
+        boxes = box_utils.center_form_to_corner_form(boxes)
+        detections = (scores, boxes, cls_logits)
+        detections = self.post_processor(detections)
+        return detections, {}

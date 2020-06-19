@@ -58,8 +58,10 @@ class VOCDataset(torch.utils.data.Dataset):
     @staticmethod
     def _read_image_ids(image_sets_file):
         ids = []
+        # N = 200
         with open(image_sets_file) as f:
-            for line in f:
+            for i, line in enumerate(f):
+                # if i < N:
                 ids.append(line.rstrip())
         return ids
 
