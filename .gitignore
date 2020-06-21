@@ -31,3 +31,4 @@ models/*
 log*.txt
 nohup*.out
 *edba-desktop
+result*.txt

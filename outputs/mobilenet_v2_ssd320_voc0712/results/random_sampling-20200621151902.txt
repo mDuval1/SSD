@@ -1,2 +1,9 @@
 strategy,args,step,mAP
 random_sampling,{},1,0.19237106187955516
+random_sampling,{},2,0.2527940480981124
+random_sampling,{},3,0.30671774659354073
+random_sampling,{},4,0.32618616236362064
+random_sampling,{},5,0.36345185502243504
+random_sampling,{},6,0.37127080761352904
+random_sampling,{},7,0.3889700025324923
+random_sampling,{},8,0.41295020791435366
