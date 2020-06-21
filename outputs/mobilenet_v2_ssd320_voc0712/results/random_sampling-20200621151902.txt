@@ -1,0 +1,2 @@
+strategy,args,step,mAP
+random_sampling,{},1,0.19237106187955516

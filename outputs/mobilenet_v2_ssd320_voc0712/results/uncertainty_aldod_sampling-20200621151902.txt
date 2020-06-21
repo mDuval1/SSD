@@ -1,0 +1,2 @@
+strategy,args,step,mAP
+uncertainty_aldod_sampling,{},1,0.19467364799044495

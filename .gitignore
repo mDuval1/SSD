@@ -25,3 +25,9 @@ dist/
 # Pycharm editor settings
 .idea
 .DS_Store
+
+# Results
+models/*
+log*.txt
+nohup*.out
+*edba-desktop

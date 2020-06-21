@@ -63,7 +63,7 @@ class DatasetCatalog:
 
             attrs = DatasetCatalog.DATASETS[name]
             args = dict(
-                data_dir='../SSD/' + os.path.join(voc_root, attrs["data_dir"]),
+                data_dir='../../SSD/' + os.path.join(voc_root, attrs["data_dir"]),
                 # data_dir=os.path.join(voc_root, attrs["data_dir"]),
                 split=attrs["split"],
             )
