@@ -36,17 +36,17 @@ def select_top_batches(uncertainties, n_instances=100, batch_size=10):
     if last_batch_size > 0:
         batch_uncertainties[-1] *= batch_size / last_batch_size
     ranked = np.argsort(batch_uncertainties)[::-1]
-    n_batches = int(np.floor(n_instances // batch_size))
+    n_batches = int(np.floor(n_instances / batch_size))
     selected_indices = []
     n_selected = 0
     for batch_id in ranked[:n_batches-1]:
-        selected_indices += list(range(batch_size*batch_id, batch_size*(batch_id+1)))
+        selected_indices += [s for s in list(range(batch_size*batch_id, batch_size*(batch_id+1))) if s<n_samples]
         n_selected += batch_size
     if batch_size < n_instances:
         batch_id = ranked[n_batches-1]
-        selected_indices += list(np.random.choice(
+        selected_indices += [s for s in list(np.random.choice(
             list(range(batch_size*batch_id, batch_size*(batch_id+1))),
-            size=n_instances-n_selected))
+            size=n_instances-n_selected, replace=False)) if s<n_samples]
     return selected_indices
 
 def select_top_indices(uncertainties, permut=True, n_instances=100, batch_size=10):
