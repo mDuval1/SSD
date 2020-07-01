@@ -1,9 +1,12 @@
+# MODEL_NAME = "vgg_ssd300_voc0712"
+# CONFIG_FILE="../SSD/configs/vgg_ssd300_voc0712.yaml"
+MODEL_NAME = "mobilenet_v2_ssd320_voc0712"
 CONFIG_FILE="../SSD/configs/mobilenet_v2_ssd320_voc0712.yaml"
-LOG_STEPS=10
+LOG_STEPS=100
 INIT_SIZE=1000
-QUERY_SIZE=100
+QUERY_SIZE=150
 QUERY_STEP=30
-TRAIN_STEPS_QUERIES=1000
+TRAIN_STEPS_QUERIES=2500
 
 # rm -rf outputs
 

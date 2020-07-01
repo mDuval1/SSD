@@ -33,3 +33,4 @@ nohup*.out
 *edba-desktop
 result*.txt
 *.ipynb
+local_tests.py

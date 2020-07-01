@@ -1,0 +1,1 @@
+outputs/mobilenet_v2_ssd320_voc0712/results/random_sampling/experiment-20200629120354/model/model-20200629121353.pth
