@@ -1,1 +1,0 @@
-outputs/mobilenet_v2_ssd320_voc0712/results/uncertainty_aldod_sampling/experiment-20200630090523/model/model-20200630150244.pth

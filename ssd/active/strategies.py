@@ -3,6 +3,7 @@ from tqdm import tqdm
 
 import torch
 import numpy as np
+import pandas as pd
 
 from ssd.active.aldod import *
 
@@ -49,3 +50,9 @@ def uncertainty_aldod_sampling(classifier, unlabeled_loader, cfg, n_instances=10
         assert id_ in keys, f"id {id_} not in keys !"
     query_idx = [uncertaintyId2id[x] for x in query_uncertainty_idx]
     return query_idx
+
+
+def fixed_sampling(classifier, step, args, *other_args, **kwargs):
+    queries = pd.read_csv(args.previous_queries)
+    string_index = queries.loc[queries.step == step+1, 'indices'].values[0]
+    return list(map(int, string_index[1:-1].split(',')))

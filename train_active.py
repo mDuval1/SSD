@@ -26,7 +26,7 @@ from ssd.utils.checkpoint import CheckPointer
 from ssd.utils.dist_util import synchronize
 from ssd.utils.logger import setup_logger
 
-from ssd.active.strategies import random_sampling, uncertainty_aldod_sampling
+from ssd.active.strategies import *
 from ssd.active.helpers import *
 
 
@@ -35,6 +35,8 @@ def get_strategy(name):
         return random_sampling
     elif name == 'uncertainty_aldod_sampling':
         return uncertainty_aldod_sampling
+    elif name == 'from_save':
+        return fixed_sampling
     else:
         raise ValueError(f'Strategy {name} unrecognized')
 
@@ -89,7 +91,7 @@ def active_train(cfg, args):
         logger.info(f'STEP NUMBER {step}')
         logger.info('Querying assets to label')
         t1 = time.time()
-        query_idx = model.query(unlabeled_loader=query_loader.get_unlabeled_loader(), cfg=cfg,
+        query_idx = model.query(unlabeled_loader=query_loader.get_unlabeled_loader(), cfg=cfg, args=args, step=step,
                     n_instances=args.query_size, length_ds=len(datasets[0]))
         logger.info('Adding labeled samples to train dataset')
         query_loader.add_to_labeled(query_idx, step+1)
@@ -142,6 +144,7 @@ def main():
     parser.add_argument('--query_size', default=300, type=int, help='Number of assets to query each time')
     parser.add_argument('--strategy', default='random_sampling', type=str, help='Strategy to use to sample assets')
     parser.add_argument('--train_step_per_query', default=500, type=int, help='Number of training steps after each query')
+    parser.add_argument('--previous_queries', default=None, type=str, help='Path to previous queries to use')
     parser.add_argument('--use_tensorboard', default=True, type=str2bool)
     parser.add_argument(
         "--skip-test",

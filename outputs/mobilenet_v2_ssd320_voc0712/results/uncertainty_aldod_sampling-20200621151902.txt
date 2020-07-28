@@ -1,7 +1,0 @@
-strategy,args,step,mAP
-uncertainty_aldod_sampling,{},1,0.19467364799044495
-uncertainty_aldod_sampling,{},2,0.2587541220207272
-uncertainty_aldod_sampling,{},3,0.30608501956597023
-uncertainty_aldod_sampling,{},4,0.333592649438838
-uncertainty_aldod_sampling,{},5,0.3685773623725125
-uncertainty_aldod_sampling,{},6,0.39247965318166605

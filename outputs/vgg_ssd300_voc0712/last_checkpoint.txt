@@ -1,1 +1,0 @@
-outputs/vgg_ssd300_voc0712/models/uncertainty_aldod_sampling-20200624211208-model_final.pth
